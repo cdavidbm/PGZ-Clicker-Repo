@@ -31,3 +31,21 @@ def on_mouse_down(button, pos):
         count += 1
         animal.y = 200
         animate(animal, tween="bounce_end", duration=0.3, y=250)
+    elif button == mouse.LEFT and bonus_1.collidepoint(pos):
+        if count >= 15:
+            schedule_interval(for_bonus_1, 2)
+            count -= 15
+    elif button == mouse.LEFT and bonus_2.collidepoint(pos):
+        if count >= 200:
+            schedule_interval(for_bonus_2, 2)
+            count -= 200
+ 
+def for_bonus_1():
+    global count
+    count += 1
+
+def for_bonus_2():
+    global count
+    count += 15
+
+
