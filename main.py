@@ -31,4 +31,3 @@ def on_mouse_down(button, pos):
         count += 1
         animal.y = 200
         animate(animal, tween="bounce_end", duration=0.3, y=250)
-
