@@ -33,6 +33,7 @@ def draw():
 
 def on_mouse_down(button, pos):
     global count
+    global mode
     if button == mouse.LEFT and animal.collidepoint(pos):
         count += 1
         animal.y = 200
@@ -45,6 +46,8 @@ def on_mouse_down(button, pos):
         if count >= 200:
             schedule_interval(for_bonus_2, 2)
             count -= 200
+    elif button == mouse.LEFT and play.collidepoint(pos):
+        mode = "game"
  
 def for_bonus_1():
     global count
