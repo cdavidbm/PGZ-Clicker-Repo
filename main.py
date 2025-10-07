@@ -18,6 +18,7 @@ shop = Actor("tienda", (300, 200))
 collection = Actor("coleccion", (300, 300))
 crocodile = Actor('crocodile', (120, 200))
 hippo = Actor('hippo', (300, 200))
+walrus = Actor("walrus", (480, 200))
 animals = []
 
 # Variables
@@ -59,6 +60,8 @@ def draw():
         screen.draw.text("2500$", center= (300, 300), color="white", fontsize = 36)
         cross.draw()
         screen.draw.text(count, center=(30, 20), color="white", fontsize = 36)
+        walrus.draw()
+        screen.draw.text("7000$", center= (480, 300), color="white", fontsize = 36)
 
     elif mode == "collection":
         background.draw()
@@ -151,6 +154,16 @@ def on_mouse_down(button, pos):
                 animal.image = "hippo"
                 click = 3
                 animals.append(hippo)
+        elif walrus.collidepoint(pos):
+            walrus.y = 150
+            animate(walrus, tween="bounce_end", duration=0.5, y=200)
+            if walrus in animals:
+                animal.image = "walrus"
+            elif count >= 7000:
+                count -= 7000
+                animal.image = "walrus"
+                click = 4
+                animals.append(walrus)
 
     # Modo ver Colección
     elif mode == "collection" and button == mouse.LEFT:
@@ -162,6 +175,9 @@ def on_mouse_down(button, pos):
         elif hippo.collidepoint(pos):
             if hippo in animals:
                 animal.image = "hippo"
+        elif walrus.collidepoint(pos):
+            if walrus in animals:
+                animal.image = "walrus"
         
 
 
