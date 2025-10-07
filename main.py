@@ -59,6 +59,11 @@ def draw():
         cross.draw()
         screen.draw.text(count, center=(30, 20), color="white", fontsize = 36)
 
+    elif mode == "collection":
+         background.draw()
+         cross.draw()
+        
+
 def for_bonus_1():
     global count
     count += 1
@@ -107,8 +112,7 @@ def on_mouse_down(button, pos):
                 price_3 *= 2
         elif cross.collidepoint(pos):
             mode = 'menu'
-        elif cross.collidepoint(pos):
-            mode = 'menu'
+
     
     # Modo menú
     elif mode == 'menu' and button == mouse.LEFT:
@@ -116,3 +120,15 @@ def on_mouse_down(button, pos):
             mode = 'game'
         elif shop.collidepoint(pos):
             mode = 'shop'
+        elif collection.collidepoint(pos):
+            mode = "collection"
+
+    # Modo Shop (tienda de comprar skins)
+    elif mode == "shop" and button == mouse.LEFT:
+        if cross.collidepoint(pos):
+            mode = "menu"
+
+    # Modo ver Colección
+    elif mode == "collection" and button == mouse.LEFT:
+        if cross.collidepoint(pos):
+            mode = "menu"
