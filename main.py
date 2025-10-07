@@ -134,7 +134,9 @@ def on_mouse_down(button, pos):
         elif crocodile.collidepoint(pos):
             crocodile.y = 150
             animate(crocodile, tween="bounce_end", duration=0.5, y=200)
-            if count >= 500:
+            if crocodile in animals:
+                animal.image = "crocodile"
+            elif count >= 500:
                 count -= 500
                 animal.image = "crocodile"
                 click = 2
@@ -142,7 +144,9 @@ def on_mouse_down(button, pos):
         elif hippo.collidepoint(pos):
             hippo.y = 150
             animate(hippo, tween="bounce_end", duration=0.5, y=200)
-            if count >= 2500:
+            if hippo in animals:
+                animal.image = "hippo"
+            elif count >= 2500:
                 count -= 2500
                 animal.image = "hippo"
                 click = 3
