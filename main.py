@@ -18,6 +18,7 @@ shop = Actor("tienda", (300, 200))
 collection = Actor("coleccion", (300, 300))
 crocodile = Actor('crocodile', (120, 200))
 hippo = Actor('hippo', (300, 200))
+animals = []
 
 # Variables
 count = 5500
@@ -60,8 +61,10 @@ def draw():
         screen.draw.text(count, center=(30, 20), color="white", fontsize = 36)
 
     elif mode == "collection":
-         background.draw()
-         cross.draw()
+        background.draw()
+        cross.draw()
+        for i in range(len(animals)):
+           animals[i].draw()
         
 
 def for_bonus_1():
@@ -135,6 +138,7 @@ def on_mouse_down(button, pos):
                 count -= 500
                 animal.image = "crocodile"
                 click = 2
+                animals.append(crocodile)
         elif hippo.collidepoint(pos):
             hippo.y = 150
             animate(hippo, tween="bounce_end", duration=0.5, y=200)
@@ -142,10 +146,18 @@ def on_mouse_down(button, pos):
                 count -= 2500
                 animal.image = "hippo"
                 click = 3
+                animals.append(hippo)
 
     # Modo ver Colección
     elif mode == "collection" and button == mouse.LEFT:
         if cross.collidepoint(pos):
             mode = "menu"
+        elif crocodile.collidepoint(pos):
+            if crocodile in animals:
+                animal.image = 'crocodile'
+        elif hippo.collidepoint(pos):
+            if hippo in animals:
+                animal.image = "hippo"
+        
 
 
