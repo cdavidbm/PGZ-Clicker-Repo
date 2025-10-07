@@ -20,7 +20,7 @@ crocodile = Actor('crocodile', (120, 200))
 hippo = Actor('hippo', (300, 200))
 
 # Variables
-count = 0
+count = 5500
 click = 1
 mode = 'menu'
 price_1 = 15
@@ -80,6 +80,7 @@ def on_mouse_down(button, pos):
     global count
     global mode
     global price_1, price_2, price_3
+    global click
     if button == mouse.LEFT and mode == 'game':
         # Click en el objeto animal
         if animal.collidepoint(pos):
@@ -127,8 +128,24 @@ def on_mouse_down(button, pos):
     elif mode == "shop" and button == mouse.LEFT:
         if cross.collidepoint(pos):
             mode = "menu"
+        elif crocodile.collidepoint(pos):
+            crocodile.y = 150
+            animate(crocodile, tween="bounce_end", duration=0.5, y=200)
+            if count >= 500:
+                count -= 500
+                animal.image = "crocodile"
+                click = 2
+        elif hippo.collidepoint(pos):
+            hippo.y = 150
+            animate(hippo, tween="bounce_end", duration=0.5, y=200)
+            if count >= 2500:
+                count -= 2500
+                animal.image = "hippo"
+                click = 3
 
     # Modo ver Colección
     elif mode == "collection" and button == mouse.LEFT:
         if cross.collidepoint(pos):
             mode = "menu"
+
+
